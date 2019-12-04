@@ -12,14 +12,16 @@ import org.testng.annotations.Test;
 
 import com.training.generics.ScreenShot;
 import com.training.pom.LoginPOM;
+import com.training.pom.RETC_013_POM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
 
-public class LoginTests {
+public class RETC_013 {
 
 	private WebDriver driver;
 	private String baseUrl;
 	private LoginPOM loginPOM;
+	private RETC_013_POM RETC_013_POM;
 	private static Properties properties;
 	//private ScreenShot screenShot;
 
@@ -34,6 +36,7 @@ public class LoginTests {
 	public void setUp() throws Exception {
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
 		loginPOM = new LoginPOM(driver); 
+		RETC_013_POM = new RETC_013_POM(driver);
 		baseUrl = properties.getProperty("baseURL");
 		//screenShot = new ScreenShot(driver); 
 		// open the browser 
@@ -52,6 +55,21 @@ public class LoginTests {
 		loginPOM.sendUserName("admin");
 		loginPOM.sendPassword("admin@123");
 		loginPOM.clickLoginBtn(); 
-		//screenShot.captureScreenShot("First");
+		Thread.sleep(3000);
+		//1. Click on the user Hyper link
+		RETC_013_POM.clickusersLink();
+		Thread.sleep(3000);
+		//2. Click on My Profile link
+		RETC_013_POM.clickmyProfile();
+		//3. Enter valid credentials in Last Name Title textbox
+		RETC_013_POM.sendLastName("reva");
+		//4. Enter valid credentials in Phone textbox
+		RETC_013_POM.sendphoneNo("9876543210");
+		//5. Click on Update Profile button
+		RETC_013_POM.clickSubmit();
+		//Capture the profile updated message
+		RETC_013_POM.getprofileUpdatedMesg();
+				
+		
 	}
 }

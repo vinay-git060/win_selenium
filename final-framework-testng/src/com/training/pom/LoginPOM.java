@@ -13,14 +13,29 @@ public class LoginPOM {
 		PageFactory.initElements(driver, this);
 	}
 	
-	@FindBy(id="login")
+	//------------------- WEB ELEMENTS  --------------------
+	
+	@FindBy(className="sign-in")
+	private WebElement loginOrRegisterBtn;
+	
+	@FindBy(id="user_login")
 	private WebElement userName; 
 	
-	@FindBy(id="password")
+	@FindBy(id="user_pass")
 	private WebElement password;
 	
-	@FindBy(id="formLogin_submitAuth")
+	@FindBy(name="login")
 	private WebElement loginBtn; 
+	
+	@FindBy(xpath="//span[contains(@class, 'display-name')]")
+	private WebElement adminMenu;
+	
+	//----------------------- METHODS --------------------------
+	
+	public void clickLoginRegisterBtn() {
+		this.loginOrRegisterBtn.click(); 
+	}	
+	
 	
 	public void sendUserName(String userName) {
 		this.userName.clear();
@@ -35,4 +50,5 @@ public class LoginPOM {
 	public void clickLoginBtn() {
 		this.loginBtn.click(); 
 	}
+	
 }

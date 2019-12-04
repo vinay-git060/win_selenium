@@ -4,22 +4,23 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.training.generics.ScreenShot;
-import com.training.pom.LoginPOM;
+import com.training.pom.RETC_015_POM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
 
-public class LoginTests {
-
-	private WebDriver driver;
-	private String baseUrl;
-	private LoginPOM loginPOM;
+public class RETC_015 {
+	private WebDriver driver; 
+	String baseUrl;
+	private RETC_015_POM RETC_015_POM;
 	private static Properties properties;
 	//private ScreenShot screenShot;
 
@@ -33,11 +34,11 @@ public class LoginTests {
 	@BeforeMethod
 	public void setUp() throws Exception {
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
-		loginPOM = new LoginPOM(driver); 
+		RETC_015_POM = new RETC_015_POM(driver); 
 		baseUrl = properties.getProperty("baseURL");
-		//screenShot = new ScreenShot(driver); 
-		// open the browser 
 		driver.get(baseUrl);
+		
+		
 	}
 	
 	@AfterMethod
@@ -47,11 +48,19 @@ public class LoginTests {
 	}
 	@Test
 	public void validLoginTest() throws InterruptedException {
-		loginPOM.clickLoginRegisterBtn();
+		RETC_015_POM.clickLoginRegisterBtn();
 		Thread.sleep(5000);
-		loginPOM.sendUserName("admin");
-		loginPOM.sendPassword("admin@123");
-		loginPOM.clickLoginBtn(); 
-		//screenShot.captureScreenShot("First");
+		RETC_015_POM.sendUserName("admin");
+		RETC_015_POM.sendPassword("reva32145678910@");
+		RETC_015_POM.clickLoginBtn(); 
+		Thread.sleep(3000);
+		
+		//Mouse Hover on 1admin menu
+		RETC_015_POM.mouseHoverAdminMenu();
+		
+		//click on logout Button
+		RETC_015_POM.clicklogOutBtn(); 
+		
+		
 	}
 }
