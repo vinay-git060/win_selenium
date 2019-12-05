@@ -39,7 +39,7 @@ public class LoginXLSTest {
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
 		loginPOM = new LoginPOM(driver);
 		baseUrl = properties.getProperty("baseURL");
-		screenShot = new ScreenShot(driver);
+		//screenShot = new ScreenShot(driver);
 		// open the browser
 		driver.get(baseUrl);
 	}
@@ -51,11 +51,13 @@ public class LoginXLSTest {
 	}
 
 	@Test(dataProvider = "xls-inputs", dataProviderClass = LoginDataProviders.class)
-	public void loginDBTest(String userName, String password) {
+	public void loginDBTest(String userName, String password) throws InterruptedException {
+		loginPOM.clickLoginRegisterBtn();
+		Thread.sleep(5000);
 		loginPOM.sendUserName(userName);
 		loginPOM.sendPassword(password);
 		loginPOM.clickLoginBtn();
-		screenShot.captureScreenShot(userName);
+		//screenShot.captureScreenShot(userName);
 
 	}
 
